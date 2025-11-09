@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+//Ricardo Dias - para teste do GIT
+
 @RestController
 public class GreetingController {
 
