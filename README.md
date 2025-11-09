@@ -1,1 +1,7 @@
-# rest-with-spring-boot-and-java-erudio
+# Hello Git Github - Merge
+
+# H1
+
+## H2
+
+### H3
