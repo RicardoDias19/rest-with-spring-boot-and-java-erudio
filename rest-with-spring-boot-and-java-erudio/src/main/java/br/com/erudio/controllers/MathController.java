@@ -1,6 +1,6 @@
 package br.com.erudio.controllers;
 
-import br.com.erudio.exception.UnsupportedMathOperationException;
+import br.com.erudio.exception.ResourceNotFoundException;
 import br.com.erudio.math.SimpleMath;
 import br.com.erudio.request.converters.NumberConverter;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +20,7 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo
     ) throws IllegalArgumentException {
         if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo))
-            throw new UnsupportedMathOperationException("Please set a numeric value.");
+            throw new ResourceNotFoundException("Please set a numeric value.");
         return math.sum(NumberConverter.convertToDouble(numberOne), NumberConverter.convertToDouble(numberTwo));
     }
 
@@ -31,7 +31,7 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo
     ) throws IllegalArgumentException {
         if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo))
-            throw new UnsupportedMathOperationException("Please set a numeric value.");
+            throw new ResourceNotFoundException("Please set a numeric value.");
         return math.subtraction(NumberConverter.convertToDouble(numberOne), NumberConverter.convertToDouble(numberTwo));
     }
 
@@ -42,7 +42,7 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo
     ) throws IllegalArgumentException {
         if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo))
-            throw new UnsupportedMathOperationException("Please set a numeric value.");
+            throw new ResourceNotFoundException("Please set a numeric value.");
         return math.multiplication(NumberConverter.convertToDouble(numberOne), NumberConverter.convertToDouble(numberTwo));
     }
 
@@ -53,10 +53,10 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo
     ) throws IllegalArgumentException {
         if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo))
-            throw new UnsupportedMathOperationException("Please set a numeric value.");
+            throw new ResourceNotFoundException("Please set a numeric value.");
         Double denominator = NumberConverter.convertToDouble(numberTwo);
         if (denominator == 0)
-            throw new UnsupportedMathOperationException("Division by zero! Try another value for second number.");
+            throw new ResourceNotFoundException("Division by zero! Try another value for second number.");
         return math.division(NumberConverter.convertToDouble(numberOne), NumberConverter.convertToDouble(numberTwo));
     }
 
@@ -67,7 +67,7 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo
     ) throws IllegalArgumentException {
         if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo))
-            throw new UnsupportedMathOperationException("Please set a numeric value.");
+            throw new ResourceNotFoundException("Please set a numeric value.");
         return math.mean(NumberConverter.convertToDouble(numberOne), NumberConverter.convertToDouble(numberTwo));
     }
 
@@ -77,7 +77,7 @@ public class MathController {
             @PathVariable("numberOne") String numberOne
     ) throws IllegalArgumentException {
         if (!NumberConverter.isNumeric(numberOne))
-            throw new UnsupportedMathOperationException("Please set a numeric value.");
+            throw new ResourceNotFoundException("Please set a numeric value.");
         return math.squareRoot(NumberConverter.convertToDouble(numberOne));
     }
 
