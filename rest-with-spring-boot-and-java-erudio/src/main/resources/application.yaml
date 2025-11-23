@@ -11,6 +11,12 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        #dialect: org.hibernate.dialect.MySQLDialect
+        #Verificamos um warning que dizia que não precisamos mais configurar essa propriedade.
+        #Será configurado automaticamente por default. Config automática.
     show-sql: false
-
+    open-in-view: false
+logging:
+  level:
+    # root: WARN
+    br.com.erudio: DEBUG
