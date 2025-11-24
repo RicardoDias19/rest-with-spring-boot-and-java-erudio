@@ -1,9 +1,12 @@
 package br.com.erudio.services;
 
-import br.com.erudio.data.dto.PersonDTO;
+import br.com.erudio.data.dto.v1.PersonDTO;
+import br.com.erudio.data.dto.v2.PersonDTOV2;
 import br.com.erudio.exception.ResourceNotFoundException;
 import static br.com.erudio.mapper.ObjectMapper.parseListObjects;
 import static br.com.erudio.mapper.ObjectMapper.parseObject;
+
+import br.com.erudio.mapper.custom.PersonMapper;
 import br.com.erudio.model.Person;
 import br.com.erudio.repository.PersonRepository;
 import org.slf4j.Logger;
@@ -24,6 +27,9 @@ public class PersonServices {
     @Autowired
     PersonRepository repository;
 
+    @Autowired
+    PersonMapper converter;
+
 
     public List<PersonDTO> findAll() {
         logger.info("Find All PersonDTOs");
@@ -42,6 +48,12 @@ public class PersonServices {
         logger.info("Creating a person!");
         var entity = parseObject(person, Person.class);
         return parseObject(repository.save(entity), PersonDTO.class);
+    }
+
+    public PersonDTOV2 createV2(PersonDTOV2 person) {
+        logger.info("Creating a person V2!");
+        var entity = converter.convertDTOV2ToEntity(person);
+        return converter.convertEntityToDTOV2(repository.save(entity));
     }
 
     public PersonDTO update(PersonDTO person) {
